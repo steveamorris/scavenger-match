@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const { dirname } = require("path");
+const TokensController = require("./controllers/tokensController");
 
 const app = express();
 
@@ -19,16 +20,18 @@ app.get("/api/config", (req, res) => {
   });
 });
 
-console.log(process.env.PORT)
+app.use(TokensController);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
   });
 
 mongoose
-  .connect(process.env.MONGODB_URI || "mongodb://localhost/mern-starter", {
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/scavenger-match", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
   })
   .then(() => {
     console.log("Successfully logged into DB");
