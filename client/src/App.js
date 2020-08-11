@@ -3,6 +3,7 @@ import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./containers/Home/Home";
 import NoMatch from "./containers/NoMatch/NoMatch";
+import Tokens from "./containers/Tokens/Tokens"
 
 function App() {
   useEffect(() => {
@@ -20,6 +21,8 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/tokens" component={Tokens} />
+
         <Route component={NoMatch} />
       </Switch>
     </Router>
