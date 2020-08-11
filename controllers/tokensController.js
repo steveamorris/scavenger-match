@@ -28,6 +28,7 @@ router.get("/api/tokens", (req, res) => {
 
 // Create
 router.post("/api/tokens", (req, res) => {
+  console.log("Req.body from controller", req.body)
     db.Token.create(req.body)
     .then((createdToken) => {
         res.json({
